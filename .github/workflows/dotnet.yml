@@ -30,7 +30,7 @@ jobs:
       run: dotnet publish --no-build --no-restore --output files
     
     - name: Test
-      run: dotnet test AnimalAdoption.Web.Portal.UnitTests\AnimalAdoption.Web.Portal.UnitTests.csproj --no-build --verbosity normal
+      run: dotnet test AnimalAdoption.Web.Portal.UnitTests/AnimalAdoption.Web.Portal.UnitTests.csproj --no-build --verbosity normal
       
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.2.2
