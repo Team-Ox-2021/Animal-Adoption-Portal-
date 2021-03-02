@@ -41,14 +41,25 @@ jobs:
         path: files
         # The desired behavior if no files are found using the provided path.
         if-no-files-found: error
+    
+    - name: Azure Login
+      uses: Azure/login@v1
+      with:
+        # Paste output of `az ad sp create-for-rbac` as value of secret variable: AZURE_CREDENTIALS
+        creds:  ${{ secrets.SECRET_SERVICE_PRINCIPAL }}
+        # Set this value to true to enable Azure PowerShell Login in addition to Az CLI login
+#         enable-AzPSSession: # optional
+#         # Name of the environment. Supported values are azurecloud, azurestack, azureusgovernment, azurechinacloud, azuregermancloud. Default being azurecloud
+#         environment: # optional, default is azurecloud
+#         # Set this value to true to enable support for accessing tenants without subscriptions
+#         allow-no-subscriptions: # optional
+    
 
     - name: Azure WebApp
       uses: Azure/webapps-deploy@v2
       with:
         # Name of the Azure Web App
         app-name: TEAM-ox-2021
-        # Applies to Web Apps(Windows and Linux) and Web App Containers(linux). Multi container scenario not supported. Publish profile (*.publishsettings) file contents with Web Deploy secrets
-        publish-profile: ${{ secrets.SECRET_PUBLISH_PROFILE }}
         # Enter an existing Slot other than the Production slot
         # slot-name: # optional, default is production
         # Applies to Web App only: Path to package or folder. *.zip, *.war, *.jar or a folder to deploy
