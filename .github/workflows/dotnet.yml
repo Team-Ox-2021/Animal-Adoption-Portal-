@@ -8,7 +8,7 @@ on:
 
 env:
   ArtifactName: Animals
-  FilesDirectory: Files
+  FilesDirectory: files
 
 jobs:
   build:
