@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [ master ]
 
+env:
+  ArtifactName: Animals
+  FilesDirectory: Files
+
 jobs:
   build:
 
@@ -36,7 +40,7 @@ jobs:
       uses: actions/upload-artifact@v2.2.2
       with:
         # Artifact name
-        name: Animals
+        name: env.ArtifactName
         # A file, directory or wildcard pattern that describes what to upload
         path: files
         # The desired behavior if no files are found using the provided path.
