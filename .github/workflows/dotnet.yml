@@ -9,6 +9,7 @@ on:
 env:
   ArtifactName: Animals
   FilesDirectory: files
+  WebAppName: TEAM-ox-2021
 
 jobs:
   build:
@@ -68,5 +69,15 @@ jobs:
         uses: Azure/webapps-deploy@v2
         with:
           # Name of the Azure Web App
-          app-name: TEAM-ox-2021
+          app-name: ${{ env.WebAppName }}
           package: ${{ env.FilesDirectory }}
+      
+      - name: Azure App Service Settings
+        uses: Azure/appservice-settings@v1
+        with:
+          # Name of the Azure Web App
+          app-name: ${{ env.WebAppName }} 
+          # Application settings using the JSON syntax set as value of secret variable: APP_SETTINGS
+          app-settings-json: '[{ "name": "GlobalPassword", "value": "54321" }, { "name": "SimulatedFailureChance", "value": "0" }]'
+            
+
