@@ -42,6 +42,18 @@ jobs:
         # The desired behavior if no files are found using the provided path.
         if-no-files-found: error
 
+  release:
+
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - name: Download a Build Artifact
+      uses: actions/download-artifact@v2.0.8
+      with:
+        # Artifact name
+        name: Animals
+        # Destination path
+        path: files
     - name: Azure WebApp
       uses: Azure/webapps-deploy@v2
       with:
@@ -59,5 +71,3 @@ jobs:
         #configuration-file: # optional
         # Enter the start up command. For ex. dotnet run or dotnet run
         #startup-command: # optional
-
-
